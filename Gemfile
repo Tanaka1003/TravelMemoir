@@ -67,3 +67,6 @@ gem 'jquery-rails'
 
 # devise追加
 gem 'devise'
+
+# kaminari追加
+gem 'kaminari'
