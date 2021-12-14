@@ -74,3 +74,6 @@ gem 'kaminari'
 # refileとrefile-mini_magick追加
 gem 'refile', require: "refile/rails", github: 'manfe/refile'
 gem 'refile-mini_magick'
+
+# ransack追加
+gem 'ransack'
