@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_15_090049) do
+ActiveRecord::Schema.define(version: 2021_12_15_134123) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_090049) do
     t.string "name", null: false
     t.string "age", null: false
     t.string "adress", null: false
-    t.string "image", null: false
+    t.string "profile_image", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
