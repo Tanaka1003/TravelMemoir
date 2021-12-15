@@ -79,3 +79,6 @@ gem 'refile-mini_magick'
 
 # ransack追加
 gem 'ransack'
+
+# dotenv-rails追加
+gem 'dotenv-rails'
