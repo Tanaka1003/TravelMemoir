@@ -1,2 +1,20 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="conntainer">
+  <div class="row">
+    <div class="d-flex mx-auto">
+      <div class="text-center">
+        <h2 class="my-3">投稿詳細</h2>
+        <div class="post-detail-left" style="width: 700px">
+          <p>ユーザー名: <%= @post.user.name %></p>
+          <p><%= attachment_image_tag @post, :image, width: '70%', height: '70%' %></p>
+        </div>
+      </div>
+      <div class="text-left" style="width: 350px">
+        <div class="my-5">
+          <p class="mt-4">タイトル: <%= @post.title %></p>
+          <p class="mt-4">旅行先: <%= @post.destination %></p>
+          <p class="mt-4">思い出: <%= @post.body %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
