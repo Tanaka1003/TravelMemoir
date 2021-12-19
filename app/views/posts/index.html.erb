@@ -1,2 +1,29 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="mt-2">
+      <h2>投稿一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <% @posts.each do |post| %>
+    　<div class="col-md-3 my-5">
+    　   <div class="card">
+          <p class="text-center my-2"><%= attachment_image_tag post, :image, width: '80%', height: '80%' %></p>
+          <div class="card-body text-center">
+            <h5>ユーザー名</h5>
+            <p><%= post.user.name %></p>
+            <h5>タイトル</h5>
+            <p><%= post.title %></p>
+            <% if @user.id == current_user.id %>
+              <p>
+                <%= link_to '編集', edit_post_path(post), class: "btn btn-sm btn-success" %>
+                <%= link_to '削除', post_path(post), method: :delete, class: "btn btn-sm btn-danger" %>
+              </p>
+            <% end %>
+            <p><%= link_to '詳細', post_path(post) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
