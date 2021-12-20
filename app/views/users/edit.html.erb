@@ -1,2 +1,28 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <h2 class="my-2">マイページﾞ編集</h2>
+      <%= form_with model: @user, local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :プロフィール画像 %>
+          <%= f.attachment_field :profile_image, class: "form-control-file user_image" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :ユーザー名 %>
+          <%= f.text_field :name, class: "form-control name" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :年齢 %>
+          <%= f.text_field :age, class: "form-control age" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :居住地 %>
+          <%= f.text_field :address, class: "form-control address" %>
+        </div>
+        <div class="my-4">
+          <%= f.submit "更新", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
