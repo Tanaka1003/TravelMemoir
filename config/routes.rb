@@ -4,10 +4,9 @@ Rails.application.routes.draw do
   root 'homes#top'
   resources :users, only: [:show, :edit, :update] do
   end
-  resources :posts, only: [:index, :show, :new, :create, :edit, :destroy] do
+  resources :posts do
     resources :tags, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
-    resources :posts, only: [:create, :destroy]
   end
 end

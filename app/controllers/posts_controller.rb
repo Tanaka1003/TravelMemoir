@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @user = current_user
   end
 
   def show
@@ -16,14 +15,29 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to post_path(@post), notice: '投稿完了しました'
+    if @post.save
+      redirect_to post_path(@post), notice: '投稿完了しました'
+    else
+      @posts = Post.all
+      @user = @post.user
+      render 'index'
+    end
   end
 
   def edit
+    @post = Post.find(params[:id])
+    if @post.user != current_user
+      redirect_to posts_path
+    end
   end
 
   def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: '投稿内容更新しました'
+    else
+      render 'edit'
+    end
   end
 
   def destroy
