@@ -8,8 +8,8 @@
     <div class="row">
       <div class="text-center">
         <div class="post-detail-left" style="width: 700px">
-          <p>ユーザー名: <%= @post.user.name %></p>
           <p><%= attachment_image_tag @post, :image, width: '70%', height: '70%' %></p>
+          <p>ユーザー名: <%= @post.user.name %></p>
         </div>
       </div>
     </div>
@@ -19,6 +19,11 @@
           <p class="mt-4">タイトル: <%= @post.title %></p>
           <p class="mt-4">旅行先: <%= @post.destination %></p>
           <p class="mt-4">思い出: <%= @post.body %></p>
+          <% if current_user.already_liked?(@post) %>
+            <p><%= link_to "いいねしない", post_like_path(@post), method: :delete %></p>
+          <% else %>
+            <p><%= link_to "いいね", post_likes_path(@post), method: :post %></p>
+          <% end %>
         </div>
       </div>
     </div>
