@@ -19,6 +19,7 @@
           <p class="mt-2">タイトル: <%= @post.title %></p>
           <p class="mt-2">旅行先: <%= @post.destination %></p>
           <p class="mt-2">思い出: <%= @post.body %></p>
+          <p class="mt-2">タグ: <%= @post.tags.map(&:name).join(',') %></p>
           <p class="mt-2">いいね: <%= @post.likes.count %></p>
           <% if @user.id != current_user.id %>
             <% if current_user.already_liked?(@post) %>
