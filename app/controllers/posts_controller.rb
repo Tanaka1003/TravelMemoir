@@ -6,7 +6,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
     @like = Like.new
+    @comment = Comment.new
   end
 
   def new
@@ -20,7 +22,6 @@ class PostsController < ApplicationController
       redirect_to post_path(@post), notice: '投稿完了しました'
     else
       @posts = Post.all
-      @user = @post.user
       render 'index'
     end
   end

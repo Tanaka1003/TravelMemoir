@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="mt-2">
+    <div class="my-2">
       <h2>投稿一覧</h2>
     </div>
   </div>
@@ -14,6 +14,7 @@
             <p><%= post.user.name %></p>
             <h5>タイトル</h5>
             <p><%= post.title %></p>
+            <p>コメント件数: <%= post.comments.count %></p>
             <p><%= link_to '詳細', post_path(post) %></p>
           </div>
         </div>

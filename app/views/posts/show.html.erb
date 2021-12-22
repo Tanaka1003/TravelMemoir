@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="mt-2">
+    <div class="my-2">
       <h2>投稿詳細</h2>
     </div>
   </div>
@@ -16,14 +16,24 @@
     <div class-"row">
       <div class="text-left" style="width: 350px">
         <div class="my-5">
-          <p class="mt-4">タイトル: <%= @post.title %></p>
-          <p class="mt-4">旅行先: <%= @post.destination %></p>
-          <p class="mt-4">思い出: <%= @post.body %></p>
-          <% if current_user.already_liked?(@post) %>
-            <p><%= link_to "いいねしない", post_like_path(@post), method: :delete %></p>
-          <% else %>
-            <p><%= link_to "いいね", post_likes_path(@post), method: :post %></p>
+          <p class="mt-2">タイトル: <%= @post.title %></p>
+          <p class="mt-2">旅行先: <%= @post.destination %></p>
+          <p class="mt-2">思い出: <%= @post.body %></p>
+          <p class="mt-2">いいね: <%= @post.likes.count %></p>
+          <% if @user.id != current_user.id %>
+            <% if current_user.already_liked?(@post) %>
+              <p><%= link_to "いいね!しない", post_like_path(@post), method: :delete %></p>
+            <% else %>
+              <p><%= link_to "いいね!", post_likes_path(@post), method: :post %></p>
+            <% end %>
           <% end %>
+          <p class="mt-2">コメント件数: <%= @post.comments.count %></p>
+          <div class="new-comment">
+            <%= form_with(model:[@post, @comment], local: true) do |f| %>
+              <%= f.text_area :content, placeholder: "コメント入力", class: "form-control" %>
+              <%= f.submit "送信" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -37,5 +47,32 @@
         </p>
       <% end %>
     </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="my-3">
+      <h2>コメント一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>ユーザー名</th>
+          <th>コメント</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post.comments.each do |comment| %>
+          <tr>
+            <td><%= comment.user.name %></td>
+            <td><%= comment.content %></td>
+            <% if comment.user == current_user %>
+              <td><%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
