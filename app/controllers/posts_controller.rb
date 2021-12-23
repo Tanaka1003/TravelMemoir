@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(3)
+    @q = Post.ransack(params[:q])
+    if params[:q].present?
+      @posts = @q.result(distinct: true).page(params[:page]).per(3)
+    end
   end
 
   def show
@@ -22,7 +26,7 @@ class PostsController < ApplicationController
     tag_list = params[:post][:name].split(',')
     if @post.save
       @post.save_tag(tag_list)
-      redirect_to post_path(@post), notice: '投稿完了しました'
+      redirect_to post_path(@post), notice: '投稿しました'
     else
       @posts = Post.all
       render 'index'
