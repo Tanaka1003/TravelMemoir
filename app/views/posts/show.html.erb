@@ -21,14 +21,21 @@
           <p class="mt-2">思い出: <%= @post.body %></p>
           <p class="mt-2">タグ: <%= @post.tags.map(&:name).join(',') %></p>
           <p class="mt-2">いいね: <%= @post.likes.count %></p>
+          <p class="mt-2">コメント件数: <%= @post.comments.count %></p>
           <% if @user.id != current_user.id %>
             <% if current_user.already_liked?(@post) %>
-              <p><%= link_to "いいね!しない", post_like_path(@post), method: :delete %></p>
+              <p><%= link_to "いいね!しない", post_like_path(@post), method: :delete, class: "btn btn-secondary" %></p>
             <% else %>
-              <p><%= link_to "いいね!", post_likes_path(@post), method: :post %></p>
+              <p><%= link_to "いいね!", post_likes_path(@post), method: :post,  class: "btn btn-secondary" %></p>
             <% end %>
           <% end %>
-          <p class="mt-2">コメント件数: <%= @post.comments.count %></p>
+          <% unless current_user == @user %>
+            <% if current_user.following?(@user) %>
+              <p><%= link_to "フォローしない", user_relationship_path(current_user.relationships.find_by(follow: @user), post_id: @post.id), method: :delete, class: "btn btn-info" %></p>
+            <% else %>
+              <p><%= link_to "フォローする", user_relationships_path(user_id: current_user.id, follow: @other_user, post_id: @post.id), method: :post, class: "btn btn-info" %></p>
+            <% end %>
+          <% end %>
           <div class="new-comment">
             <%= form_with(model:[@post, @comment], local: true) do |f| %>
               <%= f.text_area :content, placeholder: "コメント入力", class: "form-control" %>

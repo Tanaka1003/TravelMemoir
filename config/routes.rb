@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'homes#top'
   resources :users, only: [:show, :edit, :update] do
+    resources :relationships, only: [:create, :destroy]
   end
   resources :posts do
     resources :tags, only: [:create, :destroy]

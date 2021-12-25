@@ -14,6 +14,8 @@ class PostsController < ApplicationController
     @post_tags = @post.tags
     @like = Like.new
     @comment = Comment.new
+    # @follow_user = Relationship.find(@post.user_id).follow
+    @other_user = @post.user_id
   end
 
   def new

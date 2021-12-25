@@ -6,13 +6,11 @@
   </div>
   <div class="row">
     <div class="d-flex mx-auto">
-      <div class="text-center">
-        <div class="text-left" style="width: 500px">
-          <p><%= attachment_image_tag @user, :profile_image, width: '50%', height: '50%', fallback: "no_image.jpeg" %></p>
-        </div>
+      <div class="text-center" style="width: 500px">
+        <p><%= attachment_image_tag @user, :profile_image, width: '50%', height: '50%', fallback: "no_image.jpeg" %></p>
       </div>
       <diV class="row">
-        <diV class="text-right" style="width: 500px">
+        <diV class="text-left" style="width: 500px">
           <div class="my-5">
             <p>ユーザー名: <%= @user.name %></p>
             <p>年齢: <%= @user.age %></p>
@@ -25,7 +23,7 @@
   <% if @user.id == current_user.id %>
     <div class="row">
       <div class="mx-auto">
-        <p><%= link_to "編集", edit_user_path(@user), class: "btn btn-info" %></p>
+        <p><%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %></p>
       </div>
     </div>
   <% end %>
