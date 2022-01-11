@@ -82,6 +82,7 @@ gem 'ransack'
 
 # dotenv-rails追加
 gem 'dotenv-rails'
+
 group :production do
   gem 'mysql2'
 end
