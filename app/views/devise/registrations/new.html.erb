@@ -1,0 +1,38 @@
+
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <h2 class="my-4">新規登録</h2>
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th><%= f.label :ユーザー名 %></th>
+              <td><%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Jiro", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :年齢 %></th>
+              <td><%= f.text_field :age, autocomplete: "age", placeholder: "20歳", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :居住地 %></th>
+              <td><%= f.text_field :address, autocomplete: "address", placeholder: "東京", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :パスワード（6文字以上） %></th>
+              <td><%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :パスワード（確認用） %></th>
+              <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col text-center">
+          <%= f.submit "新規登録", class: "btn btn-sm btn-success my-4" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

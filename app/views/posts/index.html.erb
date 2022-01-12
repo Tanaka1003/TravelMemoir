@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <%= render "searchs/form", q: @q, url: posts_path %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="my-2">
+      <h2>投稿一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <% @posts.each do |post| %>
+    　<div class="col-md-3 my-5">
+    　   <div class="card">
+          <p class="text-center my-2"><%= attachment_image_tag post, :image, width: '80%', height: '80%' %></p>
+          <div class="card-body text-center">
+            <h5>ユーザー名</h5>
+            <p><%= post.user.name %></p>
+            <h5>タイトル</h5>
+            <p><%= post.title %></p>
+            <h5>旅行先</h5>
+            <p><%= post.destination %></p>
+            <p>コメント件数: <%= post.comments.count %></p>
+            <p><%= link_to '詳細', post_path(post) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>

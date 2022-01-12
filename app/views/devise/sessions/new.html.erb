@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <h2 class="my-4">ログイン</h2>
+　　　<%= form_with model: @user, url: user_session_path, local: true do |f| %>
+　　　<%= render "devise/shared/error_messages", resource: resource %>
+　　　  <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th><%= f.label :ユーザー名 %></th>
+              <td><%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Jiro", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :パスワード %></th>
+              <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col text-center">
+          <%= f.submit "ログイン", class: "btn btn-sm btn-primary my-4" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -56,7 +56,33 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  # rubocop-airbnb追加
+  gem 'rubocop-airbnb'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# bootstrap追加
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'
+
+# devise追加
+gem 'devise'
+
+# kaminari追加
+gem 'kaminari'
+
+# refileとrefile-mini_magick追加
+gem 'refile', require: "refile/rails", github: 'manfe/refile'
+gem 'refile-mini_magick'
+
+# ransack追加
+gem 'ransack'
+
+# dotenv-rails追加
+gem 'dotenv-rails'
+
+group :production do
+  gem 'mysql2'
+end

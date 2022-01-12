@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <div class="my-2">
+      <h2>投稿詳細</h2>
+    </div>
+  </div>
+  <div class="d-flex mx-auto">
+    <div class="row">
+      <div class="text-center" style="width: 700px">
+        <div class="my-4">
+          <p><%= attachment_image_tag @post, :image, width: '70%', height: '70%' %></p>
+          <p>ユーザー名: <%= @post.user.name %></p>
+        </div>
+      </div>
+    </div>
+    <div class-"row">
+      <div class="text-left" style="width: 350px">
+        <div class="my-4">
+          <p class="mt-2">タイトル: <%= @post.title %></p>
+          <p class="mt-2">旅行先: <%= @post.destination %></p>
+          <p class="mt-2">思い出: <%= @post.body %></p>
+          <p class="mt-2">タグ: <%= @post.tags.map(&:name).join(',') %></p>
+          <p class="mt-2">いいね: <%= @post.likes.count %></p>
+          <p class="mt-2">コメント件数: <%= @post.comments.count %></p>
+          <% if @user.id != current_user.id %>
+            <% if current_user.already_liked?(@post) %>
+              <p><%= link_to "いいね!しない", post_like_path(@post), method: :delete, class: "btn btn-secondary" %></p>
+            <% else %>
+              <p><%= link_to "いいね!", post_likes_path(@post), method: :post,  class: "btn btn-secondary" %></p>
+            <% end %>
+          <% end %>
+          <% unless current_user == @user %>
+            <% if current_user.following?(@user) %>
+              <p><%= link_to "フォローしない", user_relationship_path(current_user.relationships.find_by(follow: @user), post_id: @post.id), method: :delete, class: "btn btn-info" %></p>
+            <% else %>
+              <p><%= link_to "フォローする", user_relationships_path(user_id: current_user.id, follow: @other_user, post_id: @post.id), method: :post, class: "btn btn-info" %></p>
+            <% end %>
+          <% end %>
+          <div class="new-comment">
+            <%= form_with(model:[@post, @comment], local: true) do |f| %>
+              <%= f.text_area :content, placeholder: "コメント入力", class: "form-control" %>
+              <%= f.submit "送信" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <% if @post.user == current_user %>
+        <p>
+          <%= link_to '編集', edit_post_path(@post), class: "btn btn-sm btn-success" %>
+          <%= link_to '削除', post_path(@post), method: :delete, class: "btn btn-sm btn-danger" %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="my-3">
+      <h2>コメント一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>ユーザー名</th>
+          <th>コメント</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post.comments.each do |comment| %>
+          <tr>
+            <td><%= comment.user.name %></td>
+            <td><%= comment.content %></td>
+            <% if comment.user == current_user %>
+              <td><%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
