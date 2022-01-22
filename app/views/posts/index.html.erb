@@ -17,11 +17,13 @@
           <div class="card-body text-center">
             <h5>ユーザー名</h5>
             <p><%= post.user.name %></p>
-            <h5>タイトル</h5>
-            <p><%= post.title %></p>
             <h5>旅行先</h5>
             <p><%= post.destination %></p>
-            <p>コメント件数: <%= post.comments.count %></p>
+            <h5>タグ</h5>
+            <% post.tags.each.with_index(1) do |tag,i| %>
+              <%= tag.name %><%= "," unless i==post.tags.length %>
+            <% end %>
+            <p class="my-2">コメント件数: <%= post.comments.count %></p>
             <p><%= link_to '詳細', post_path(post) %></p>
           </div>
         </div>
@@ -29,7 +31,7 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="mx-auto">
+    <div class="mx-auto my-3">
       <%= paginate @posts %>
     </div>
   </div>

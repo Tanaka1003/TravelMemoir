@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-dark" style="background-color:#87CEEB;">
       <div class="container">
-        <div class="col-3">Travel Memoir</div>
+        <div class="col-3"><%= link_to "Travel Memoir", posts_path %></div>
         <ul class="nav justify-content-end">
           <% if user_signed_in? %>
             <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id), class: "nav-link" %></li>

@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :user
 
   def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
+    likes.exists?(post_id: post.id)
   end
 
   def follow(other_user)

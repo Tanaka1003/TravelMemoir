@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
-
   def index
-    @posts = Post.page(params[:page]).per(3)
+    @posts = Post.joins(:tags).distinct.page(params[:page]).per(3)
     @q = Post.ransack(params[:q])
     if params[:q].present?
       @posts = @q.result(distinct: true).page(params[:page]).per(3)
