@@ -12,9 +12,11 @@
       <diV class="row">
         <diV class="text-left" style="width: 500px">
           <div class="my-5">
-            <p>ユーザー名: <%= @user.name %></p>
+            <p>ユーザーID: <%= @user.name %></p>
             <p>年齢: <%= @user.age %></p>
             <p>居住地: <%= @user.address %></p>
+            <p>フォロー数： <%= @user.followings.count %></p>
+            <p>フォロワー数: <%= @user.followers.count %></p>
           </div>
         </diV>
       </div>
