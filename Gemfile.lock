@@ -82,7 +82,6 @@ GEM
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
-    coderay (1.1.3)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -98,6 +97,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -106,6 +106,13 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.8.1)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -166,11 +173,6 @@ GEM
     parser (3.0.3.2)
       ast (~> 2.4.1)
     popper_js (1.16.0)
-    pry (0.14.1)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
-    pry-rails (0.3.9)
-      pry (>= 0.10.4)
     public_suffix (4.0.6)
     puma (3.12.6)
     racc (1.6.0)
@@ -225,6 +227,23 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
+    rspec-core (3.10.1)
+      rspec-support (~> 3.10.0)
+    rspec-expectations (3.10.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-mocks (3.10.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-rails (5.0.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      railties (>= 5.2)
+      rspec-core (~> 3.10)
+      rspec-expectations (~> 3.10)
+      rspec-mocks (~> 3.10)
+      rspec-support (~> 3.10)
+    rspec-support (3.10.3)
     rubocop (0.93.1)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
@@ -334,17 +353,19 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  factory_bot_rails
+  faker
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
   mysql2
-  pry-rails
   puma (~> 3.11)
   rails (~> 5.2.5)
   ransack
   refile!
   refile-mini_magick
+  rspec-rails
   rubocop-airbnb
   sass-rails (~> 5.0)
   selenium-webdriver
