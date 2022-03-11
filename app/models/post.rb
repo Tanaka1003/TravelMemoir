@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :destination, presence: true
-  validates :body, presence: true, length: {maximum: 200}
+  validates :body, presence: true, length: { maximum: 200 }
 
   def save_tag(sent_tags)
     current_tags = tags.pluck(:name) unless tags.nil?
