@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   validates :name, length: { minimum: 2 }, presence: true, uniqueness: true
   validates :age, presence: true
-  validates :address, prensence: true
+  validates :address, presence: true
 
   def already_liked?(post)
     likes.exists?(post_id: post.id)
