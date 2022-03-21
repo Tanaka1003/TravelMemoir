@@ -1,24 +1,38 @@
 <div class="container">
   <div class="row">
-    <div class="mt-2">
-      <h2>ﾏｲﾍﾟｰｼﾞ</h2>
+    <div class="mx-auto">
+      <div class="mt-2">
+        <h2>ﾏｲﾍﾟｰｼﾞ</h2>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="d-flex mx-auto">
-      <div class="text-center" style="width: 500px">
-        <p><%= attachment_image_tag @user, :profile_image, width: '50%', height: '50%', fallback: "no_image.jpg" %></p>
-      </div>
-      <diV class="row">
-        <diV class="text-left" style="width: 500px">
-          <div class="my-5">
-            <p>ユーザーID: <%= @user.name %></p>
-            <p>年齢: <%= @user.age %></p>
-            <p>居住地: <%= @user.address %></p>
-            <p>フォロー数： <%= @user.followings.count %></p>
-            <p>フォロワー数: <%= @user.followers.count %></p>
-          </div>
-        </diV>
+    <div class="mx-auto">
+      <div class="my-3">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th>ユーザーID</th>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <th>年齢</th>
+              <td><%= @user.age %></td>
+            </tr>
+            <tr>
+              <th>居住地</th>
+              <td><%= @user.address %></td>
+            </tr>
+            <tr>
+              <th>フォロー数</th>
+              <td><%= @user.followings.count %></td>
+            </tr>
+            <tr>
+              <th>フォロワー数</th>
+              <td><%= @user.followers.count %></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
